@@ -28,7 +28,7 @@ public class GUI {
 		}
 		return password;
 	}
-	public boolean authenticate() throws AWTException, IOException {
+	public static boolean authenticate() throws AWTException, IOException {
 		String salt = Auth.generateSalt(256).toString();
 		String hashed_pass=Auth.hashPassword(GUI.getPass(), salt).toString();
 		FileReader file = new FileReader("data.txt");
@@ -44,9 +44,15 @@ public class GUI {
 		data.close();
 		return false;
 	}
-	public void newUser(String username, String hashed_pass) throws IOException {
+	public void createNewUser(String username, String hashed_pass) throws IOException {
 		FileWriter file = new FileWriter("data.txt", true);
 		file.append(username+""+hashed_pass+"\n");
 		file.close();
 	}
+	public static void main(String[] args) throws AWTException, IOException {
+		Auto robo = new Auto();
+		if (GUI.authenticate()==false) {
+			System.exit(0);
 	}
+	}
+}
