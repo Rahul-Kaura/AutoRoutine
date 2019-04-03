@@ -2,12 +2,15 @@ package automation;
 
 import java.awt.AWTException;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.stream.Collectors;
 public class GUI {
+	// Gui 
 	private static String getPass() throws AWTException, IOException{
 		String os_name=System.getProperty("os.name").toLowerCase();
 		String password = "";
@@ -30,10 +33,20 @@ public class GUI {
 		String hashed_pass=Auth.hashPassword(GUI.getPass(), salt).toString();
 		FileReader file = new FileReader("data.txt");
 		BufferedReader data = new BufferedReader(file);
-		if (hashed_pass == data.readLine()) {
-			data.close();
-			return true;
+		String line = data.readLine();
+		while (line!=null) {
+			if (hashed_pass == data.readLine()) {
+				data.close();
+				return true;
+			}
+			data.readLine();
 		}
+		data.close();
 		return false;
+	}
+	public void newUser(String username, String hashed_pass) throws IOException {
+		FileWriter file = new FileWriter("data.txt", true);
+		file.append(username+""+hashed_pass+"\n");
+		file.close();
 	}
 	}
