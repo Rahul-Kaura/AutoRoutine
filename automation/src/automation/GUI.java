@@ -55,4 +55,3 @@ public class GUI {
 			System.exit(0);
 	}
 	}
-}
