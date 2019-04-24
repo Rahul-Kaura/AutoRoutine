@@ -1,26 +1,53 @@
 package automation;
 
-import javafx.stage.Stage;
 import java.io.IOException;
 
-import org.bytedeco.javacv.FFmpegFrameRecorder;
-import org.bytedeco.javacv.OpenCVFrameConverter;
-import javafx.event.ActionEvent;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-public class FXGUI {
+import javafx.stage.Stage;
+
+public class FXGUI extends Application {
 	@FXML
-	private Button startRecord;
+	private Button loginButton;
 	@FXML
-	private ImageView imagePanel;
-	private boolean cameraActive = false;
-	public static FFmpegFrameRecorder recorder=null;
+	private Button newUserButton;
+	@FXML
+	private TextField usernameTextField;
+	@FXML
+	private PasswordField passwordTextField;
+	private Stage primaryStage;
+	private AnchorPane rootLayout;
+	@Override
 	public void start(Stage primaryStage) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("FxGUI.fxml"));
-		BorderPane root = (BorderPane) loader.load();
+		this.primaryStage= primaryStage;
+		this.primaryStage.setTitle("Auto Routine");
+		initGUI();
 	}
-	
+	public void initGUI() {
+		try {
+	        // Load root layout from fxml file.
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(FXGUI.class.getResource("FxGUIrecord.fxml"));
+	        rootLayout = (AnchorPane) loader.load();
+	        
+	        // Show the scene containing the root layout.
+	        Scene scene = new Scene(rootLayout);
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		}
+		
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
