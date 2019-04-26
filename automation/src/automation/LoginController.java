@@ -1,5 +1,7 @@
 package automation;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +28,8 @@ public class LoginController {
 	private TextField usernameTextField;
 	@FXML
 	private PasswordField passwordTextField;
+	@FXML
+	private Label incorrectUsername;
     private AnchorPane root;
     @FXML
     private void handleButtonAction (ActionEvent event) throws Exception {
@@ -32,10 +37,16 @@ public class LoginController {
         Parent root;
        
         if(event.getSource()==loginButton){
+        	if (authenticate()==false) {
+        		incorrectUsername.setText("Incorrect Username or Password");
+        	}
+        	else {
         	MainController maincontroller = new MainController();
-            stage = (Stage) loginButton.getScene().getWindow();
             maincontroller.initialize();
             root = maincontroller.getContent();
+        	}
+        	stage = (Stage) loginButton.getScene().getWindow();
+        	root = getContent();
         }
         else{
             stage = (Stage) newUserButton.getScene().getWindow();
@@ -54,6 +65,31 @@ public class LoginController {
     		e.printStackTrace();
         }
     }
+    @FXML
+	public String getPass() {
+    	return passwordTextField.getText();
+	}
+    @FXML
+    public String getUsername() {
+    	return usernameTextField.getText();
+    }
+    public boolean authenticate() throws IOException {
+		String salt = Auth.generateSalt(256).toString();
+		String username = getUsername();
+		String hashed = Auth.hashPassword(getPass(), salt).toString();
+		String stuff=username+" "+hashed;
+		FileReader file = new FileReader("data.txt");
+		BufferedReader data = new BufferedReader(file);
+		String line = data.readLine();
+		while (line!=null) {
+			if (stuff == data.readLine()) {
+				data.close();
+				return true;
+			}
+		}
+		data.close();
+		return false;
+	}
     public Parent getContent() {
         return root;
     }

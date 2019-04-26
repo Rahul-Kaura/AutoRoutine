@@ -1,5 +1,7 @@
 package automation;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 
 public class FXGUI extends Application {
 	private Stage primaryStage;
+	private LoginController logincontroller;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage= primaryStage;
@@ -25,31 +28,12 @@ public class FXGUI extends Application {
 	}
 	public void initLoginGUI() throws IOException {
 	        // Load root layout from fxml file.
-	        LoginController logincontroller = new LoginController();
+	        logincontroller = new LoginController();
 	        logincontroller.initialize();
 	        Scene scene = new Scene(logincontroller.getContent());
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	}
-	//@FXML 
-	//private void mainGUI(ActionEvent event) {
-	//	try {
-	//		//Scene scene = new Scene(mainLayout);
-	//		//primaryStage.setScene(scene);
-	//	} catch (IOException e) {
-	//		e.printStackTrace();
-	//	}
-	//}
-	//@FXML
-	//private void newuserGUI() {
-	//	try {
-	//		Parent pane = FXMLLoader.load(getClass().getResource("/automation/FxGUInewuser.fxml"));
-	//		primaryStage.getScene().setRoot(pane);
-	//	} catch (IOException e) {
-	//		e.printStackTrace();
-	//	}
-	//}
-
 	public static void main(String[] args) {
 		launch(args);
 	}

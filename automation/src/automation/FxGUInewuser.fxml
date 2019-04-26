@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="automation.NewUserController">
    <children>
-      <Button id="createNewUser" layoutX="248.0" layoutY="344.0" mnemonicParsing="false" text="Create New User" />
+      <Button fx:id="createNewUser" layoutX="248.0" layoutY="344.0" mnemonicParsing="false" text="Create New User" />
       <Label layoutX="232.0" layoutY="71.0" text="Create New User Account" />
       <Label layoutX="163.0" layoutY="120.0" text="Username" />
       <Label layoutX="165.0" layoutY="218.0" text="Password" />
-      <PasswordField id="newUserPass" layoutX="241.0" layoutY="214.0" />
-      <TextField id="newUserName" layoutX="241.0" layoutY="116.0" />
+      <PasswordField fx:id="newUserPass" layoutX="241.0" layoutY="214.0" />
+      <TextField fx:id="newUserName" layoutX="241.0" layoutY="116.0" />
    </children>
 </AnchorPane>
