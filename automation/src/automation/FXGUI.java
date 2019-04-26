@@ -16,58 +16,39 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class FXGUI extends Application {
-	@FXML
-	private Button loginButton;
-	@FXML
-	private Button newUserButton;
-	@FXML
-	private TextField usernameTextField;
-	@FXML
-	private PasswordField passwordTextField;
 	private Stage primaryStage;
-	private AnchorPane rootLayout;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage= primaryStage;
 		this.primaryStage.setTitle("Auto Routine");
 		initLoginGUI();
 	}
-	public void initLoginGUI() {
-		try {
+	public void initLoginGUI() throws IOException {
 	        // Load root layout from fxml file.
-	        FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(FXGUI.class.getResource("FxGUIlogin.fxml"));
-	        rootLayout = (AnchorPane) loader.load();
-	        
-	        // Show the scene containing the root layout.
-	        Scene scene = new Scene(rootLayout);
+	        LoginController logincontroller = new LoginController();
+	        logincontroller.initialize();
+	        Scene scene = new Scene(logincontroller.getContent());
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
 	}
-	@FXML 
-	private void mainGUI(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(FXGUI.class.getResource("FxGUImain.fxml"));
-			AnchorPane mainLayout = (AnchorPane) loader.load();
-			Scene scene = new Scene(mainLayout);
-			primaryStage.setScene(scene);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	@FXML
-	private void newuserGUI(ActionEvent Event) {
-		try {
-			Parent pane = FXMLLoader.load(getClass().getResource("FxGUInewuser.fxml"));
-			primaryStage.getScene().setRoot(pane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	//@FXML 
+	//private void mainGUI(ActionEvent event) {
+	//	try {
+	//		//Scene scene = new Scene(mainLayout);
+	//		//primaryStage.setScene(scene);
+	//	} catch (IOException e) {
+	//		e.printStackTrace();
+	//	}
+	//}
+	//@FXML
+	//private void newuserGUI() {
+	//	try {
+	//		Parent pane = FXMLLoader.load(getClass().getResource("/automation/FxGUInewuser.fxml"));
+	//		primaryStage.getScene().setRoot(pane);
+	//	} catch (IOException e) {
+	//		e.printStackTrace();
+	//	}
+	//}
 
 	public static void main(String[] args) {
 		launch(args);
