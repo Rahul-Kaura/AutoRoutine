@@ -35,18 +35,17 @@ public class LoginController {
     private void handleButtonAction (ActionEvent event) throws Exception {
         Stage stage;
         Parent root;
-       
+        
         if(event.getSource()==loginButton){
         	if (authenticate()==false) {
         		incorrectUsername.setText("Incorrect Username or Password");
+        		stage = (Stage) loginButton.getScene().getWindow();
+        		root = FXMLLoader.load(getClass().getResource("FxGUIlogin.fxml"));
         	}
         	else {
-        	MainController maincontroller = new MainController();
-            maincontroller.initialize();
-            root = maincontroller.getContent();
-        	}
         	stage = (Stage) loginButton.getScene().getWindow();
-        	root = getContent();
+            root = FXMLLoader.load(getClass().getResource("FxGUImain.fxml"));
+        	}
         }
         else{
             stage = (Stage) newUserButton.getScene().getWindow();
@@ -55,15 +54,6 @@ public class LoginController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-    public void initialize(){
-    	try {
-    	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(FXGUI.class.getResource("FxGUIlogin.fxml"));
-        root = (AnchorPane) loader.load();
-    	} catch (IOException e) {
-    		e.printStackTrace();
-        }
     }
     @FXML
 	public String getPass() {
@@ -74,21 +64,22 @@ public class LoginController {
     	return usernameTextField.getText();
     }
     public boolean authenticate() throws IOException {
-		String salt = Auth.generateSalt(256).toString();
-		String username = getUsername();
-		String hashed = Auth.hashPassword(getPass(), salt).toString();
-		String stuff=username+" "+hashed;
-		FileReader file = new FileReader("data.txt");
-		BufferedReader data = new BufferedReader(file);
-		String line = data.readLine();
-		while (line!=null) {
-			if (stuff == data.readLine()) {
-				data.close();
-				return true;
-			}
-		}
-		data.close();
-		return false;
+    	return true;
+		//String salt = Auth.generateSalt(256).toString();
+		//String username = getUsername();
+		//String hashed = Auth.hashPassword(getPass(), salt).toString();
+		//String stuff=username+" "+hashed;
+		//FileReader file = new FileReader("data.txt");
+		//BufferedReader data = new BufferedReader(file);
+		//String line = data.readLine();
+		//while (line!=null) {
+		//	if (stuff == data.readLine()) {
+		//		data.close();
+		//		return true;
+		//	}
+		//}
+		//data.close();
+		//return false;
 	}
     public Parent getContent() {
         return root;

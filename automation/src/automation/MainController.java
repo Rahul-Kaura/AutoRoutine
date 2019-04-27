@@ -14,16 +14,7 @@ public class MainController {
 	@FXML
 	private Button executeRoutine;
 	private AnchorPane root;
-	public void initialize() {
-		//TODO Fix bug here where controller class is constructed infinitely
-		try {
-	    	FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(FXGUI.class.getResource("FxGUImain.fxml"));
-	        root = (AnchorPane) loader.load();
-	    	} catch (IOException e) {
-	    		e.printStackTrace();
-	        }
-	}
+	private Auto auto;
 	public Parent getContent() {
         return root;
     }

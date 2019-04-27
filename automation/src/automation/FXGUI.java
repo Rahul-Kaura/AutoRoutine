@@ -26,11 +26,13 @@ public class FXGUI extends Application {
 		this.primaryStage.setTitle("Auto Routine");
 		initLoginGUI();
 	}
+	
 	public void initLoginGUI() throws IOException {
 	        // Load root layout from fxml file.
-	        logincontroller = new LoginController();
-	        logincontroller.initialize();
-	        Scene scene = new Scene(logincontroller.getContent());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(FXGUI.class.getResource("FxGUIlogin.fxml"));
+			AnchorPane root = (AnchorPane) loader.load();
+	        Scene scene = new Scene(root);
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	}
