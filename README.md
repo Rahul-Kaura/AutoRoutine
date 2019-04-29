@@ -6,9 +6,9 @@ Created by Rahul Kaura and Thomas Li
 Improved by Kento Nishi
 
 ## OS Support
-- [ ] Windows
-- [X] Mac
-- [ ] Linux
+[ ] Windows
+[X] Mac
+[ ] Linux
 
 ## Download
 Clone the repository with git.
