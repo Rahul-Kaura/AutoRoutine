@@ -5,5 +5,18 @@ Created by Rahul Kaura and Thomas Li
 
 Improved by Kento Nishi
 
-Works on Mac, Windows support is coming soon. 
-In order to run the code, open up this repository in Eclipse and build the files and the project will be able to be run correctly. 
+## OS Support
+- [ ] Windows
+- [X] Mac
+- [ ] Linux
+
+## Download
+Clone the repository with git.
+```
+git clone https://github.com/rahulkaura2004/AutoRoutine
+```
+
+## Execution
+1. Open the repository in Eclipse.
+2. Build the files.
+3. Done! The project will launch itself.
