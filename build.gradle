@@ -5,6 +5,7 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
  */
+// Define the main class for the application
 
 plugins {
     // Apply the java plugin to add support for Java
@@ -19,16 +20,26 @@ javafx {
 	modules = [ 'javafx.controls', 'javafx.fxml']
 }
 version = '1.0'
+mainClassName = 'automation.FXGUI'
 //makes a jar with dependencies
 task fatJar(type: Jar) {
 	manifest {
 		attributes 'Implementation-Title': 'Gradle Jar File' , 
 			'Implementation-Version': version, 
-			'Main-Class': 'automation/src/automation.FXGUI'
+			'Main-Class': mainClassName
 	}
 	baseName = project.name + '-all'
 	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	with jar 
+}
+sourceSets.main {
+    java {
+        srcDir 'src/main/java/src/automation' //assume that your source codes are inside this path
+    }
+    resources {
+        srcDirs = ['src/main/java/automation/src', 'src/main/resources']
+        exclude "**/*.java"
+    }
 }
 repositories {
     // Use jcenter for resolving your dependencies.
@@ -47,5 +58,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-// Define the main class for the application
-mainClassName = 'automation/src/automation.FXGUI'
+
