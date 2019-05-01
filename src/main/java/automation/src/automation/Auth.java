@@ -19,7 +19,7 @@ public class Auth {
 		 	SecureRandom rand = new SecureRandom();
 		    if (length < 1) {
 		      System.err.println("error in generateSalt: length must be > 0");
-		      return Optional.empty();
+		      return Optional.empty(); 
 		    }
 
 		    byte[] salt = new byte[length];
@@ -49,4 +49,9 @@ public class Auth {
 	      spec.clearPassword();
 	    }
 	  }
+	 public static boolean verifyPassword (String password, String key, String salt) {
+		    Optional<String> optEncrypted = hashPassword(password, salt);
+		    if (!optEncrypted.isPresent()) return false;
+		    return optEncrypted.get().equals(key);
+		  }
 }

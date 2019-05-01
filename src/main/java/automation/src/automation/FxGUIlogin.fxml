@@ -12,7 +12,7 @@
       <SplitPane id="loginButtons" dividerPositions="0.4696969696969697" layoutX="200.0" layoutY="364.0" prefHeight="36.0" prefWidth="200.0">
          <items>
             <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="95.0" text="Login" />
-            <Button fx:id="newUserButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="New User" />
+            <Button fx:id="newUserButton" mnemonicParsing="false" prefHeight="25.0" onAction="#handleButtonAction" prefWidth="114.0" text="New User" />
          </items>
       </SplitPane>
       <PasswordField fx:id="passwordTextField" layoutX="212.0" layoutY="200.0" prefHeight="25.0" prefWidth="187.0" />
