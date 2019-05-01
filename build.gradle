@@ -22,13 +22,12 @@ javafx {
 version = '1.0'
 mainClassName = 'automation.FXGUI'
 //makes a jar with dependencies
-task fatJar(type: Jar) {
+jar {
 	manifest {
 		attributes 'Implementation-Title': 'Gradle Jar File' , 
 			'Implementation-Version': version, 
 			'Main-Class': mainClassName
 	}
-	baseName = project.name + '-all'
 	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	with jar 
 }
