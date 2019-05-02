@@ -32,10 +32,12 @@ public class NewUserController {
 		FileWriter file = new FileWriter("src/automation/data.txt", true); 
 		String hash = Auth.hashPassword(getPass(), salt).toString();
 		BufferedWriter printer = new BufferedWriter(file);
-		printer.write(salt);
 		printer.newLine();
 		printer.write(getUsername()+" "+hash);
 		printer.close();
+		loadLogin();
+	}
+	private void loadLogin() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FXGUI.class.getResource("FxGUIlogin.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();

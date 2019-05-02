@@ -69,10 +69,9 @@ public class LoginController {
 		String username = getUsername();
 		String hashed = Auth.hashPassword(getPass(), salt).toString();
 		String stuff=username+" "+hashed;
-		System.out.println(stuff);
 		String line = data.readLine();
 		while (line!=null) {
-			if (stuff == line) {
+			if (stuff.contentEquals(line)) {
 				data.close();
 				return true;
 			}
