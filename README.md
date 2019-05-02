@@ -18,5 +18,10 @@ git clone https://github.com/rahulkaura2004/AutoRoutine
 ```
 
 ## Execution
-1. Build the files
-2. Run the files
+1. Install gradle (find installation instructions [here](https://gradle.org/))
+2. Navigate to the repository.
+3. Run the following command:
+```bash
+gradlew run
+```
+All done! The program should build and execute.
