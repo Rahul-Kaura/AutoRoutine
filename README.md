@@ -18,5 +18,4 @@ git clone https://github.com/rahulkaura2004/AutoRoutine
 ```
 
 ## Execution
-1. Build the files
-2. Run the files
+1. Install gradle (find installation instructions [here](https://gradle.org/))
