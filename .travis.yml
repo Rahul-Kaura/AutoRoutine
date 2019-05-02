@@ -1,0 +1,7 @@
+language: java
+sudo: false
+script:
+  - ./gradlew clean build
+cache:
+  directories:
+    - $HOME/.gradle
