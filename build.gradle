@@ -5,20 +5,27 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
  */
-// Define the main class for the application
-
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
-	//Apply javafx plugin
-	id 'org.openjfx.javafxplugin' version '0.0.7'
     // Apply the application plugin to add support for building an application
     id 'application'
 }
-javafx {
-	version = "12.0.1"
-	modules = [ 'javafx.controls', 'javafx.fxml']
-}
+
+//javafx {
+//	version = "8.0.0"
+//	modules = [ 'javafx.controls', 'javafx.fxml']
+//}
 version = '1.0'
 mainClassName = 'automation.FXGUI'
 //makes a jar with dependencies
@@ -40,6 +47,11 @@ sourceSets.main {
         exclude "**/*.java"
     }
 }
+apply plugin: 'javafx-gradle-plugin'
+jfx {
+	mainClass = mainClassName
+	vendor = 'AutoRoutine'
+}
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -47,12 +59,15 @@ repositories {
 	maven {
 		url "https://raw.github.com/kristian/system-hook/mvn-repo/"
 	}
+	mavenLocal()
+	mavenCentral()
 }
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:27.0.1-jre'
 	implementation 'lc.kra.system:system-hook:3.3'
+	implementation 'de.dynamicfiles.projects.gradle.plugins:javafx-gradle-plugin:8.8.2'
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
