@@ -1,4 +1,5 @@
 # AutoRoutine
+[![Linux and Mac Build Status](https://travis-ci.com/rahulkaura2004/AutoRoutine.svg?branch=master)](https://travis-ci.com/rahulkaura2004/AutoRoutine)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/5ey3n5fgbu9fnkfn?svg=true)](https://ci.appveyor.com/project/lithomas1/autoroutine)
 [![Coverage Status](https://coveralls.io/repos/github/rahulkaura2004/AutoRoutine/badge.svg?branch=master)](https://coveralls.io/github/rahulkaura2004/AutoRoutine?branch=master)
 
