@@ -1,6 +1,9 @@
 package automation;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +28,8 @@ public class NewUserController {
 	private PasswordField newUserPass;
 	@FXML
 	private void createNewUser() throws IOException {
+		String salt = getHash();
 		FileWriter file = new FileWriter("src/automation/data.txt", true); 
-		String salt = Auth.generateSalt(256).toString();
 		String hash = Auth.hashPassword(getPass(), salt).toString();
 		BufferedWriter printer = new BufferedWriter(file);
 		printer.write(salt);
@@ -40,6 +43,13 @@ public class NewUserController {
         Stage primaryStage = (Stage) createNewUser.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.show();
+	}
+	private String getHash() throws IOException {
+		FileReader file = new FileReader("src/automation/data.txt");
+		BufferedReader data = new BufferedReader(file);
+		String line=data.readLine();
+		data.close();
+		return line;
 	}
 	private String getPass() {
 		return newUserPass.getText();

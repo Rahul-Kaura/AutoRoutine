@@ -30,17 +30,14 @@ public class LoginController {
 	private PasswordField passwordTextField;
 	@FXML
 	private Label incorrectUsername;
-    private AnchorPane root;
     @FXML
     private void handleButtonAction (ActionEvent event) throws Exception {
-        Stage stage;
-        Parent root;
+        Stage stage = null;
+        Parent root = null;
         
         if(event.getSource()==loginButton){
         	if (authenticate()==false) {
         		incorrectUsername.setText("Incorrect Username or Password");
-        		stage = (Stage) loginButton.getScene().getWindow();
-        		root = FXMLLoader.load(getClass().getResource("FxGUIlogin.fxml"));
         	}
         	else {
         	stage = (Stage) loginButton.getScene().getWindow();
@@ -51,9 +48,11 @@ public class LoginController {
             stage = (Stage) newUserButton.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("FxGUInewuser.fxml"));
         }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (root!=null) {
+        	Scene scene = new Scene(root);
+        	stage.setScene(scene);
+        	stage.show();
+        }
     }
     @FXML
 	public String getPass() {
@@ -70,6 +69,7 @@ public class LoginController {
 		String username = getUsername();
 		String hashed = Auth.hashPassword(getPass(), salt).toString();
 		String stuff=username+" "+hashed;
+		System.out.println(stuff);
 		String line = data.readLine();
 		while (line!=null) {
 			if (stuff == line) {
