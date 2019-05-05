@@ -1,4 +1,4 @@
-package listener;
+package main.java.listener;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseInputListener;
 public class MouseListener implements NativeMouseInputListener {

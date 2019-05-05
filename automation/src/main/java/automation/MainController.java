@@ -1,4 +1,4 @@
-package automation;
+package main.java.automation;
 
 import java.io.IOException;
 
@@ -13,9 +13,13 @@ public class MainController {
 	private Button newRoutine;
 	@FXML
 	private Button executeRoutine;
-	private AnchorPane root;
-	private Auto auto = new Auto();
-	public Parent getContent() {
-        return root;
-    }
+	@FXML
+	private void createNewRoutine() {
+		Auto auto = new Auto();
+		auto.learnRoutine();
+	}
+	@FXML
+	private void findExecRoutine() {
+		
+	}
 }
