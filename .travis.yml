@@ -1,0 +1,11 @@
+language: java
+sudo: false
+before_install:
+ - chmod +x gradlew
+before_script:
+ - cd automation
+script:
+  - ./gradlew clean build
+cache:
+  directories:
+    - $HOME/.gradle
