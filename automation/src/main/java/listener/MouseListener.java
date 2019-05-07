@@ -1,7 +1,9 @@
 package main.java.listener;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseInputListener;
-public class MouseListener implements NativeMouseInputListener {
+import org.jnativehook.mouse.NativeMouseWheelEvent;
+import org.jnativehook.mouse.NativeMouseWheelListener;
+public class MouseListener implements NativeMouseInputListener, NativeMouseWheelListener {
 	public void nativeMouseClicked(NativeMouseEvent e) {
 		System.out.println("Mouse Clicked: " + e.getClickCount());
 	}
@@ -21,4 +23,8 @@ public class MouseListener implements NativeMouseInputListener {
 	public void nativeMouseDragged(NativeMouseEvent e) {
 		System.out.println("Mouse Dragged: " + e.getX() + ", " + e.getY());
 	}
+	public void nativeMouseWheelMoved(NativeMouseWheelEvent e) {
+		System.out.println("Mouse Wheel Moved: " + e.getWheelRotation());
+	}
+
 }

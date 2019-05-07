@@ -1,22 +1,32 @@
 package main.java.automation;
 
-import java.io.IOException;
+import java.awt.AWTException;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 public class MainController {
 	@FXML
 	private Button newRoutine;
 	@FXML
 	private Button executeRoutine;
+	private boolean started = false;
+	private Auto auto;
 	@FXML
-	private void createNewRoutine() {
-		Auto auto = new Auto();
-		auto.learnRoutine();
+	private void newRoutine() {
+		if (started==true) {
+			auto.stopRecording();
+		}
+		else {
+			auto = new Auto();
+			newRoutine.setText("Stop routine");
+			started=true;
+			try {
+				auto.learnRoutine();
+			} catch (AWTException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	@FXML
 	private void findExecRoutine() {

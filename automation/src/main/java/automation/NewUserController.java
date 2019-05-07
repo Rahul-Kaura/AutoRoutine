@@ -47,7 +47,7 @@ public class NewUserController {
         primaryStage.show();
 	}
 	private String getHash() throws IOException {
-		FileReader file = new FileReader("src/automation/data.txt");
+		FileReader file = new FileReader("src/main/java/automation/data.txt");
 		BufferedReader data = new BufferedReader(file);
 		String line=data.readLine();
 		data.close();

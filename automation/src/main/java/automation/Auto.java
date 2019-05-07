@@ -4,8 +4,11 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+
 import main.java.listener.KeyListener;
 import main.java.listener.MouseListener;
 
@@ -17,6 +20,7 @@ public class Auto {
 	private int screenHeight;
 	private int screenWidth;
 	private boolean startCapture = false;
+	private ArrayList<BufferedImage> imgs;
 	public Auto() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		screenHeight = screenSize.height;
@@ -29,11 +33,20 @@ public class Auto {
 		
 		
 	}
-	public void learnRoutine() {
+	public void learnRoutine() throws AWTException {
 		//This tracks the mouse and keyboard actions and writes to a txt file 
 		addListeners();
-		
-		
+		startCapture=true;
+		while (startCapture==true) {
+			BufferedImage image = takeScreenshot(new Rectangle(screenWidth, screenHeight));
+			imgs.add(image);
+		}
+		System.out.println("Stopped recording");
+		try {
+			GlobalScreen.unregisterNativeHook();
+		} catch (NativeHookException e) {
+			e.printStackTrace();
+		}
 	}
 	private static void addListeners() {
 		try {
@@ -46,12 +59,12 @@ public class Auto {
 		GlobalScreen.addNativeKeyListener(keylistener);
 		GlobalScreen.addNativeMouseListener(mouselistener);
 	}
-	private void takeScreenshot(Rectangle screenRect) {
-		try {
+	private BufferedImage takeScreenshot(Rectangle screenRect) throws AWTException {
 			Robot rb = new Robot();
-			rb.createScreenCapture(screenRect);
-		} catch (AWTException e) {
-			e.printStackTrace();
-		}
+			BufferedImage img = rb.createScreenCapture(screenRect);
+			return img;
+	}
+	public void stopRecording() {
+		startCapture=false;
 	}
 }
