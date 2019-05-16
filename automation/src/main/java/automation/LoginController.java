@@ -1,4 +1,4 @@
-package automation;
+package main.java.automation;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -30,17 +30,14 @@ public class LoginController {
 	private PasswordField passwordTextField;
 	@FXML
 	private Label incorrectUsername;
-    private AnchorPane root;
     @FXML
     private void handleButtonAction (ActionEvent event) throws Exception {
-        Stage stage;
-        Parent root;
+        Stage stage = null;
+        Parent root = null;
         
         if(event.getSource()==loginButton){
         	if (authenticate()==false) {
         		incorrectUsername.setText("Incorrect Username or Password");
-        		stage = (Stage) loginButton.getScene().getWindow();
-        		root = FXMLLoader.load(getClass().getResource("FxGUIlogin.fxml"));
         	}
         	else {
         	stage = (Stage) loginButton.getScene().getWindow();
@@ -51,9 +48,11 @@ public class LoginController {
             stage = (Stage) newUserButton.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("FxGUInewuser.fxml"));
         }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (root!=null) {
+        	Scene scene = new Scene(root);
+        	stage.setScene(scene);
+        	stage.show();
+        }
     }
     @FXML
 	public String getPass() {
@@ -64,7 +63,7 @@ public class LoginController {
     	return usernameTextField.getText();
     }
     public boolean authenticate() throws IOException {
-    	FileReader file = new FileReader("src/automation/data.txt");
+    	FileReader file = new FileReader("src/main/java/automation/data.txt");
     	BufferedReader data = new BufferedReader(file);
     	String salt = data.readLine();
 		String username = getUsername();
@@ -72,7 +71,7 @@ public class LoginController {
 		String stuff=username+" "+hashed;
 		String line = data.readLine();
 		while (line!=null) {
-			if (stuff == line) {
+			if (stuff.contentEquals(line)) {
 				data.close();
 				return true;
 			}

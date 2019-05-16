@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.automation.MainController">
+   <children>
+      <Button fx:id="newRoutine" layoutX="167.0" layoutY="61.0" mnemonicParsing="false" onAction="#newRoutine" prefHeight="25.0" prefWidth="93.0" text="New Routine" />
+      <Button fx:id="executeRoutine" layoutX="307.0" layoutY="61.0" mnemonicParsing="false" onAction="#findExecRoutine" prefHeight="25.0" prefWidth="106.0" text="Execute Routine" />
+      <Label layoutX="260.0" layoutY="25.0" text="Main Page" />
+   </children>
+</AnchorPane>

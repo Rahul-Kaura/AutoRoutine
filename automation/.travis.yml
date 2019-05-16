@@ -1,7 +1,6 @@
 language: java
 sudo: false
 before_install:
- - cd automation
  - chmod +x gradlew
 script:
   - ./gradlew clean build

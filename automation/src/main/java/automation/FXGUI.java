@@ -1,4 +1,4 @@
-package automation;
+package main.java.automation;
 
 
 import java.io.IOException;
