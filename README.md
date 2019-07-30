@@ -5,7 +5,6 @@
 
 Created by Rahul Kaura and Thomas Li 
 
-Improved by Kento Nishi
 ## Prerequisites 
 Java 1.8
 ## OS Support
